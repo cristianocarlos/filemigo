@@ -1,5 +1,6 @@
 // import './styles.css'; // não funciona essa bosta
 
-import FileUpload from './lib/FileUpload';
+import FilemigoUpload from './lib/FilemigoUpload';
+import FilemigoProgressItems from './lib/progress/ProgressItems';
 
-export {FileUpload};
+export {FilemigoProgressItems, FilemigoUpload};

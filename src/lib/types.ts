@@ -1,3 +1,4 @@
+import type {AxiosProgressEvent} from 'axios';
 import type {ChangeEventHandler, DragEventHandler} from 'react';
 
 export type TDragEventHandler = DragEventHandler<HTMLElement>;
@@ -72,7 +73,7 @@ export type TFilemigoXhrActions = {
     data: File | FormData;
     headers?: Record<string, string>;
     method: 'post' | 'put';
-    onUploadProgress: (progressEvent: ProgressEvent) => void;
+    onUploadProgress: (progressEvent: AxiosProgressEvent) => void;
     signal: AbortSignal;
     timeout: number;
     url: string;

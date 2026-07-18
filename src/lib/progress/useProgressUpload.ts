@@ -1,8 +1,10 @@
 import useProgressSetItemStatus from '@/lib/progress/useProgressSetItemStatus';
 
+import type {AxiosProgressEvent} from 'axios';
+
 export default function useProgressUpload() {
   const progressSetItemStatus = useProgressSetItemStatus();
-  return (progressItemId: string) => (progressEvent: ProgressEvent) => {
+  return (progressItemId: string) => (progressEvent: AxiosProgressEvent) => {
     const {loaded, total} = progressEvent;
     if (!total) return;
     progressSetItemStatus({
