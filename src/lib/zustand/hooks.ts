@@ -1,5 +1,6 @@
 import {useCallback} from 'react';
 
+import {useStore} from '@/lib/zustand/store';
 import {
   useCommonDispatchArrayAddItemAtBeginning,
   useCommonDispatchArrayRemoveItem,
@@ -10,8 +11,6 @@ import {
   useCommonSelectorValue,
   useCommonStoreGetValue,
 } from '@/utils/zustand/hooksCommon';
-
-import {useStore} from './store';
 
 import type {TZustandFileCustomKeyPath, TZustandFileStateData, TZustandFileStateDataKeys} from '@/lib/zustand/types';
 import type {

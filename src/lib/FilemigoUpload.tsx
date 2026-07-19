@@ -1,18 +1,18 @@
-import FileUpload from '@/lib/FileUpload';
+import Upload from '@/lib/Upload';
 import {FilemigoContext} from '@/lib/withContext';
 
-import type {TFileUpload} from '@/lib/types';
+import type {TFilemigoUpload} from '@/lib/types';
 import type {ReactElement} from 'react';
 
-type TFileUploadProps = TFileUpload & {
+type TFilemigoUploadProps = TFilemigoUpload & {
   children?: ReactElement;
   className?: string;
 };
 
-export default function FilemigoUpload(props: TFileUploadProps) {
+export default function FilemigoUpload(props: TFilemigoUploadProps) {
   return (
     <FilemigoContext value={{xhrActions: props.xhrActions}}>
-      <FileUpload {...props} />
+      <Upload {...props} />
     </FilemigoContext>
   );
 }

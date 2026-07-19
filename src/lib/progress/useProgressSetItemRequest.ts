@@ -1,10 +1,13 @@
 import {useDispatchFileSetValue} from '@/lib/zustand/hooks';
 
-import type {TFileProgressItems} from '@/lib/types';
+import type {TFilemigoProgressItems} from '@/lib/types';
 
 export default function useProgressSetItemRequest() {
-  const fileSetProgressItemRequest = useDispatchFileSetValue<TFileProgressItems[string]['request']>(null); // progressItems
-  return (progressItemId: TFileProgressItems[string]['itemId'], request: TFileProgressItems[string]['request']) => {
+  const fileSetProgressItemRequest = useDispatchFileSetValue<TFilemigoProgressItems[string]['request']>(null); // progressItems
+  return (
+    progressItemId: TFilemigoProgressItems[string]['itemId'],
+    request: TFilemigoProgressItems[string]['request'],
+  ) => {
     fileSetProgressItemRequest(request, ['progressRows', progressItemId, 'request']);
   };
 }

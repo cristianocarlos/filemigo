@@ -1,9 +1,9 @@
 import {hasValue} from '@/utils/helper';
 import YiiLang from '@/utils/yii-lang';
 
-import type {TFileUpload} from '@/lib/types';
+import type {TFilemigoUpload} from '@/lib/types';
 
-type TFileUploadBytesErrorMessage = Pick<TFileUpload, 'maxStorageBytes' | 'maxUploadBytes'> & {
+type TFilemigoUploadBytesErrorMessage = Pick<TFilemigoUpload, 'maxStorageBytes' | 'maxUploadBytes'> & {
   fileBytes: number;
   fileMimeType: string;
   maxImageBytes?: number;
@@ -57,7 +57,7 @@ export function getUploadBytesErrorMessage({
   maxStorageBytes,
   maxUploadBytes,
   totalBytes,
-}: TFileUploadBytesErrorMessage) {
+}: TFilemigoUploadBytesErrorMessage) {
   if (totalBytes > maxStorageBytes) {
     const hint = YiiLang.filemigo('labelFileHandlerMaxStorageBytes') + ': ' + formatFileBytes(maxStorageBytes);
     const message = YiiLang.filemigo('feedbackFileHandlerMaxStorageBytesError') + ': ' + formatFileBytes(totalBytes);

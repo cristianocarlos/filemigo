@@ -8,11 +8,11 @@ import {useFilemigoContext} from '@/lib/withContext';
 import type {
   TCloudinaryPresignData,
   TCloudinaryUploadApiResponse,
-  TFileUpload,
-  TFileUploadPresignResponseContent,
+  TFilemigoUpload,
+  TFilemigoUploadPresignResponseContent,
 } from '@/lib/types';
 
-type THandleUploadSendToCloudinaryHook = Pick<TFileUpload, 'confirmPath' | 'deletePath' | 'handleEnd'>;
+type THandleUploadSendToCloudinaryHook = Pick<TFilemigoUpload, 'confirmPath' | 'deletePath' | 'handleEnd'>;
 
 export default function useUploadStep3SendToCloudinary({
   confirmPath,
@@ -27,7 +27,7 @@ export default function useUploadStep3SendToCloudinary({
   return async (
     progressItemId: string,
     uploadFile: File,
-    presignResponseContent: TFileUploadPresignResponseContent,
+    presignResponseContent: TFilemigoUploadPresignResponseContent,
   ) => {
     const {fileData, presignData} = presignResponseContent;
     const request = new AbortController();
@@ -67,6 +67,6 @@ export default function useUploadStep3SendToCloudinary({
       handleStatusError(progressItemId, rawError.message, `${deletePath}/${fileData.file_code}`);
       handleEnd?.({errorMessage: rawError.message});
     }
-    progressSetItemRequest(progressItemId, request); // TODO: testar
+    progressSetItemRequest(progressItemId, request);
   };
 }

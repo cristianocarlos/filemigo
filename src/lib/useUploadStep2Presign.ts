@@ -3,13 +3,16 @@ import useUploadStep3Send from '@/lib/useUploadStep3Send';
 import {useFilemigoContext} from '@/lib/withContext';
 import {valueAsString} from '@/utils/helper';
 
-import type {TFileProgressItems, TFileUpload, TFileUploadPresignResponseContent} from '@/lib/types';
+import type {TFilemigoProgressItems, TFilemigoUpload, TFilemigoUploadPresignResponseContent} from '@/lib/types';
 
-type TFileUploadSingleSendHook = Pick<TFileUpload, 'confirmPath' | 'deletePath' | 'handleEnd' | 'presignParams'>;
+type TFilemigoUploadSingleSendHook = Pick<
+  TFilemigoUpload,
+  'confirmPath' | 'deletePath' | 'handleEnd' | 'presignParams'
+>;
 
-type TFileUploadSingleSendHandler = {
+type TFilemigoUploadSingleSendHandler = {
   additionalParams?: Record<string, string>;
-  progressFile: TFileProgressItems[string];
+  progressFile: TFilemigoProgressItems[string];
   uploadFile: File;
 };
 
@@ -18,7 +21,7 @@ export default function useUploadStep2Presign({
   deletePath,
   handleEnd,
   presignParams,
-}: TFileUploadSingleSendHook) {
+}: TFilemigoUploadSingleSendHook) {
   const {xhrActions} = useFilemigoContext();
   const serviceSend = useUploadStep3Send({
     confirmPath,
@@ -26,7 +29,7 @@ export default function useUploadStep2Presign({
     handleEnd,
   });
   const handleStatusError = useUploadStatusError();
-  return ({additionalParams, progressFile, uploadFile}: TFileUploadSingleSendHandler) => {
+  return ({additionalParams, progressFile, uploadFile}: TFilemigoUploadSingleSendHandler) => {
     const formData = new FormData();
     formData.append('fileBytes', valueAsString(uploadFile.size));
     formData.append('fileMimeType', uploadFile.type);
@@ -39,7 +42,7 @@ export default function useUploadStep2Presign({
       });
     }
     xhrActions
-      .presign<TFileUploadPresignResponseContent>({data: formData, url: presignParams.url})
+      .presign<TFilemigoUploadPresignResponseContent>({data: formData, url: presignParams.url})
       .then((responseContent) => {
         serviceSend(progressFile.itemId, uploadFile, responseContent);
       })

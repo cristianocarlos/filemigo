@@ -4,9 +4,9 @@ import useProgressAddItems from '@/lib/progress/useProgressAddItems';
 import useUploadStep2Presign from '@/lib/useUploadStep2Presign';
 import {valueAsString} from '@/utils/helper';
 
-import type {TFileProgressItems, TFileUpload} from '@/lib/types';
+import type {TFilemigoProgressItems, TFilemigoUpload} from '@/lib/types';
 
-export type TFileUploadMultipleSendHook = TFileUpload;
+export type TFilemigoUploadMultipleSendHook = TFilemigoUpload;
 
 export default function useUploadStep1Process({
   confirmPath,
@@ -16,7 +16,7 @@ export default function useUploadStep1Process({
   maxStorageBytes,
   maxUploadBytes,
   presignParams,
-}: TFileUploadMultipleSendHook) {
+}: TFilemigoUploadMultipleSendHook) {
   const progressAddItems = useProgressAddItems();
   const uploadPresign = useUploadStep2Presign({
     confirmPath,
@@ -26,7 +26,7 @@ export default function useUploadStep1Process({
   });
   return (fileList: FileList) => {
     if (fileList.length === 0) return;
-    const progressFiles: TFileProgressItems = {};
+    const progressFiles: TFilemigoProgressItems = {};
     new Promise<void>((resolveAll) => {
       // É necessário usar promises por causa do tratamento de erro das imagens
       // proccessImage para obter as dimensões é assíncrono
@@ -36,7 +36,7 @@ export default function useUploadStep1Process({
         singleFilePromises.push(
           new Promise<void>((resolveSingle) => {
             const uploadFile = fileList[i];
-            const progressFile: TFileProgressItems[string] = {
+            const progressFile: TFilemigoProgressItems[string] = {
               errorMessage: undefined,
               itemId: Date.now().toString() + i,
               name: uploadFile.name,
@@ -88,7 +88,6 @@ export default function useUploadStep1Process({
         );
       }
       Promise.all(singleFilePromises).then(() => {
-        console.log('resolveAll');
         resolveAll(); // Com todos os arquivos processados já é possível adicionar ao progressItems
       });
     }).then(() => {

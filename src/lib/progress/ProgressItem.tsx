@@ -1,12 +1,11 @@
 import {useEffect, useRef} from 'react';
 
 import XIconButton from '@/components/XIconButton';
+import ProgressStatus from '@/lib/progress/ProgressStatus';
 import useProgressRemoveItem from '@/lib/progress/useProgressRemoveItem';
 import {useSelectorFileValue} from '@/lib/zustand/hooks';
 
-import ProgressStatus from './ProgressStatus';
-
-import type {TFileProgressItems} from '@/lib/types';
+import type {TFilemigoProgressItems} from '@/lib/types';
 
 type TProgressItemProps = {
   className?: string;
@@ -18,7 +17,7 @@ export default function ProgressItem({className, progressItemId}: TProgressItemP
 
   const requestRef = useRef<AbortController>(undefined);
 
-  const data = useSelectorFileValue<TFileProgressItems[string]>(['progressRows', progressItemId]);
+  const data = useSelectorFileValue<TFilemigoProgressItems[string]>(['progressRows', progressItemId]);
   const request = data?.request;
 
   const handleRemove = () => {
@@ -31,12 +30,14 @@ export default function ProgressItem({className, progressItemId}: TProgressItemP
   };
 
   useEffect(() => {
-    if (requestRef.current) {
-      requestRef.current.abort();
-    } else {
-      // O erro pode acontecer antes de iniciar o upload, é necessário remover o progressItem pra não aparecer o erro em outra tela
-      handleRemove();
-    }
+    return () => {
+      if (requestRef.current) {
+        requestRef.current.abort();
+      } else {
+        // O erro pode acontecer antes de iniciar o upload, é necessário remover o progressItem pra não aparecer o erro em outra tela
+        handleRemove();
+      }
+    };
     // Essa cb só deve rodar na montagem do componente
     // eslint-disable-next-line @eslint-react/exhaustive-deps
   }, []);

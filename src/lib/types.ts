@@ -11,7 +11,7 @@ export type TFileIndexRows = Array<{
   file_path: string;
 }>;
 
-export type TFileUpload = {
+export type TFilemigoUpload = {
   confirmPath: string;
   deletePath: string;
   handleEnd?: (params: {errorMessage?: string; fileData?: TFileIndexRows[number]}) => void;
@@ -28,16 +28,7 @@ export type TFileUpload = {
   xhrActions: TFilemigoXhrActions;
 };
 
-export type TCloudinaryPresignData = {
-  api_key: string;
-  folder: string;
-  public_id: string;
-  signature: string;
-  timestamp: string;
-  type: 'authenticated' | 'private' | 'public';
-};
-
-export type TFileUploadPresignResponseContent = {
+export type TFilemigoUploadPresignResponseContent = {
   fileData: TFileIndexRows[number];
   presignData: {
     cloudinaryData?: TCloudinaryPresignData;
@@ -45,15 +36,7 @@ export type TFileUploadPresignResponseContent = {
   };
 };
 
-export type TCloudinaryUploadApiResponse = {
-  bytes: number;
-  format: string;
-  height: number;
-  public_id: string;
-  width: number;
-};
-
-export type TFileProgressItems = {
+export type TFilemigoProgressItems = {
   [itemId: string]: {
     errorMessage?: string;
     itemId: string;
@@ -78,4 +61,21 @@ export type TFilemigoXhrActions = {
     timeout: number;
     url: string;
   }) => Promise<G>;
+};
+
+export type TCloudinaryPresignData = {
+  api_key: string;
+  folder: string;
+  public_id: string;
+  signature: string;
+  timestamp: string;
+  type: 'authenticated' | 'private' | 'public';
+};
+
+export type TCloudinaryUploadApiResponse = {
+  bytes: number;
+  format: string;
+  height: number;
+  public_id: string;
+  width: number;
 };

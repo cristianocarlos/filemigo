@@ -1,14 +1,14 @@
 import useUploadStep1Process from '@/lib/useUploadStep1Process';
 
-import type {TDragEventHandler, TFileUpload, TPickEventHandler} from '@/lib/types';
+import type {TDragEventHandler, TFilemigoUpload, TPickEventHandler} from '@/lib/types';
 import type {ReactElement} from 'react';
 
-type TFileUploadProps = TFileUpload & {
+type TFilemigoUploadProps = TFilemigoUpload & {
   children?: ReactElement;
   className?: string;
 };
 
-export default function FileUpload({children, className = '', ...restProps}: TFileUploadProps) {
+export default function Upload({children, className = '', ...restProps}: TFilemigoUploadProps) {
   const multipleSend = useUploadStep1Process(restProps);
 
   const handleDragOver: TDragEventHandler = (e) => {
@@ -41,9 +41,9 @@ export default function FileUpload({children, className = '', ...restProps}: TFi
             fill="none"
             height="24"
             stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
             viewBox="0 0 24 24"
             width="24"
             xmlns="http://www.w3.org/2000/svg"

@@ -4,15 +4,15 @@ import {useFilemigoContext} from '@/lib/withContext';
 import {useDispatchFileSetValue} from '@/lib/zustand/hooks';
 import YiiLang from '@/utils/yii-lang';
 
-import type {TFileProgressItems} from '@/lib/types';
+import type {TFilemigoProgressItems} from '@/lib/types';
 
 export default function useUploadStatusError() {
   const {xhrActions} = useFilemigoContext();
   const progressRemoveItem = useProgressRemoveItem();
-  const fileSetProgressItemError = useDispatchFileSetValue<TFileProgressItems[string]['errorMessage']>(null); // progressItems
+  const fileSetProgressItemError = useDispatchFileSetValue<TFilemigoProgressItems[string]['errorMessage']>(null); // progressItems
   return (
-    progressItemId: TFileProgressItems[string]['itemId'],
-    errorMessage: NonNullable<TFileProgressItems[string]['errorMessage']>,
+    progressItemId: TFilemigoProgressItems[string]['itemId'],
+    errorMessage: NonNullable<TFilemigoProgressItems[string]['errorMessage']>,
     deleteUrl?: string,
   ) => {
     if (deleteUrl) {

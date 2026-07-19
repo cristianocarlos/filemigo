@@ -2,10 +2,10 @@ import XIcon from '@/components/XIcon';
 import {formatFileBytes} from '@/lib/helper';
 import YiiLang from '@/utils/yii-lang';
 
-import type {TFileProgressItems} from '@/lib/types';
+import type {TFilemigoProgressItems} from '@/lib/types';
 
 type TProgressStatusProps = {
-  data: TFileProgressItems[string]['status'];
+  data: TFilemigoProgressItems[string]['status'];
   handleCancel: () => void;
   name: string;
 };
@@ -41,9 +41,9 @@ export default function ProgressStatus(props: TProgressStatusProps) {
           fill="none"
           height="24"
           stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
           viewBox="0 0 24 24"
           width="24"
           xmlns="http://www.w3.org/2000/svg"

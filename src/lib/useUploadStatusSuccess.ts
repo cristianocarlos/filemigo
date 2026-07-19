@@ -6,7 +6,7 @@ import {
   useStoreFileGetValue,
 } from '@/lib/zustand/hooks';
 
-import type {TFileIndexRows, TFileProgressItems} from '@/lib/types';
+import type {TFileIndexRows, TFilemigoProgressItems} from '@/lib/types';
 
 export default function useUploadStatusSuccess() {
   const {xhrActions} = useFilemigoContext();
@@ -15,7 +15,7 @@ export default function useUploadStatusSuccess() {
   const setStorageUsageQuantity = useDispatchFileSetValue('storageUsageQuantity');
   const storageUsageQuantityGetValue = useStoreFileGetValue('storageUsageQuantity');
   return (
-    progressItemId: TFileProgressItems[string]['itemId'],
+    progressItemId: TFilemigoProgressItems[string]['itemId'],
     fileData: TFileIndexRows[number],
     confirmUrl: string,
   ) => {

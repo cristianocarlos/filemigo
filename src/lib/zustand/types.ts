@@ -1,10 +1,10 @@
-import type {TFileIndexRows, TFileProgressItems} from '@/lib/types';
+import type {TFileIndexRows, TFilemigoProgressItems} from '@/lib/types';
 import type {TArrayKey} from '@/types/common';
 import type {TImmerDraft} from '@/types/thirdParty';
 import type {TZustandArrayState, TZustandCommonState, TZustandObjectState} from '@/utils/zustand/types';
 
 export type TZustandFileStateData = {
-  progressRows?: TFileProgressItems;
+  progressRows?: TFilemigoProgressItems;
   rows?: TFileIndexRows;
   storageUsageQuantity?: number;
 };

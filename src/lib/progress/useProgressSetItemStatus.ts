@@ -1,10 +1,10 @@
 import {useDispatchFileProduceState} from '@/lib/zustand/hooks';
 
-import type {TFileProgressItems} from '@/lib/types';
+import type {TFilemigoProgressItems} from '@/lib/types';
 
 export default function useProgressSetItemStatus() {
   const produceProgressState = useDispatchFileProduceState(); // Pra não ter que ler o progressRows neste arquivo
-  return (data: TFileProgressItems[string]['status']) => {
+  return (data: TFilemigoProgressItems[string]['status']) => {
     produceProgressState((proxyState) => {
       // Após o cancelamento o upload não para imediatamente, é necessário prevenir update de id inexistente
       if (!proxyState.progressRows?.[data.itemId]) return;

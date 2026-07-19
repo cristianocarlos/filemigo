@@ -1,6 +1,5 @@
+import ProgressItem from '@/lib/progress/ProgressItem';
 import {useSelectorFileValue} from '@/lib/zustand/hooks';
-
-import ProgressItem from './ProgressItem';
 
 export default function ProgressItems({className}: {className?: string}) {
   /*
@@ -34,11 +33,12 @@ export default function ProgressItems({className}: {className?: string}) {
   useDidMountEffect(() => {
     setValue(progressItems2);
   });
-   */
+  */
   const progressItems = useSelectorFileValue('progressRows');
   if (!progressItems) return;
   const progressItemsValues = Object.values(progressItems);
   if (progressItemsValues.length === 0) return;
+  console.log(2, progressItemsValues);
   return (
     <div className={`flex flex-col gap-2 ${className}`}>
       {progressItemsValues.map((data) => {
