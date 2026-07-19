@@ -1,5 +1,6 @@
+import type {TFilemigoContext} from '@/lib/withContext';
 import type {AxiosProgressEvent} from 'axios';
-import type {ChangeEventHandler, DragEventHandler} from 'react';
+import type {ChangeEventHandler, DragEventHandler, ReactElement} from 'react';
 
 export type TDragEventHandler = DragEventHandler<HTMLElement>;
 export type TPickEventHandler = ChangeEventHandler<HTMLInputElement>;
@@ -11,21 +12,9 @@ export type TFileIndexRows = Array<{
   file_path: string;
 }>;
 
-export type TFilemigoUpload = {
-  confirmPath: string;
-  deletePath: string;
-  handleEnd?: (params: {errorMessage?: string; fileData?: TFileIndexRows[number]}) => void;
-  imageConstraints?: {
-    exactDimensions?: {height: number; width: number};
-    maxBytes?: number;
-    maxDimensions?: {height: number; width: number};
-  };
-  maxStorageBytes: number;
-  maxUploadBytes: number;
-  presignParams: Record<string, string> & {
-    url: string;
-  };
-  xhrActions: TFilemigoXhrActions;
+export type TFilemigoUploadProps = TFilemigoContext & {
+  children?: ReactElement;
+  className?: string;
 };
 
 export type TFilemigoUploadPresignResponseContent = {

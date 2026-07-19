@@ -2,28 +2,15 @@ import {getMultipleFilesTotalBytes, getUploadBytesErrorMessage, isValidImageMime
 import proccessImage from '@/lib/processImage';
 import useProgressAddItems from '@/lib/progress/useProgressAddItems';
 import useUploadStep2Presign from '@/lib/useUploadStep2Presign';
+import {useFilemigoContext} from '@/lib/withContext';
 import {valueAsString} from '@/utils/helper';
 
-import type {TFilemigoProgressItems, TFilemigoUpload} from '@/lib/types';
+import type {TFilemigoProgressItems} from '@/lib/types';
 
-export type TFilemigoUploadMultipleSendHook = TFilemigoUpload;
-
-export default function useUploadStep1Process({
-  confirmPath,
-  deletePath,
-  handleEnd,
-  imageConstraints,
-  maxStorageBytes,
-  maxUploadBytes,
-  presignParams,
-}: TFilemigoUploadMultipleSendHook) {
+export default function useUploadStep1Process() {
+  const {imageConstraints, maxStorageBytes, maxUploadBytes} = useFilemigoContext();
   const progressAddItems = useProgressAddItems();
-  const uploadPresign = useUploadStep2Presign({
-    confirmPath,
-    deletePath,
-    handleEnd,
-    presignParams,
-  });
+  const uploadPresign = useUploadStep2Presign();
   return (fileList: FileList) => {
     if (fileList.length === 0) return;
     const progressFiles: TFilemigoProgressItems = {};

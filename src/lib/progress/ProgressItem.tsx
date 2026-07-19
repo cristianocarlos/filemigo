@@ -12,7 +12,7 @@ type TProgressItemProps = {
   progressItemId: string;
 };
 
-export default function ProgressItem({className, progressItemId}: TProgressItemProps) {
+export default function ProgressItem({className = '', progressItemId}: TProgressItemProps) {
   const progressRemoveItem = useProgressRemoveItem();
 
   const requestRef = useRef<AbortController>(undefined);

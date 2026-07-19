@@ -3,12 +3,7 @@ import useUploadStep3Send from '@/lib/useUploadStep3Send';
 import {useFilemigoContext} from '@/lib/withContext';
 import {valueAsString} from '@/utils/helper';
 
-import type {TFilemigoProgressItems, TFilemigoUpload, TFilemigoUploadPresignResponseContent} from '@/lib/types';
-
-type TFilemigoUploadSingleSendHook = Pick<
-  TFilemigoUpload,
-  'confirmPath' | 'deletePath' | 'handleEnd' | 'presignParams'
->;
+import type {TFilemigoProgressItems, TFilemigoUploadPresignResponseContent} from '@/lib/types';
 
 type TFilemigoUploadSingleSendHandler = {
   additionalParams?: Record<string, string>;
@@ -16,18 +11,9 @@ type TFilemigoUploadSingleSendHandler = {
   uploadFile: File;
 };
 
-export default function useUploadStep2Presign({
-  confirmPath,
-  deletePath,
-  handleEnd,
-  presignParams,
-}: TFilemigoUploadSingleSendHook) {
-  const {xhrActions} = useFilemigoContext();
-  const serviceSend = useUploadStep3Send({
-    confirmPath,
-    deletePath,
-    handleEnd,
-  });
+export default function useUploadStep2Presign() {
+  const {presignParams, xhrActions} = useFilemigoContext();
+  const serviceSend = useUploadStep3Send();
   const handleStatusError = useUploadStatusError();
   return ({additionalParams, progressFile, uploadFile}: TFilemigoUploadSingleSendHandler) => {
     const formData = new FormData();

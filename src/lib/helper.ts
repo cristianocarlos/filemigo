@@ -1,9 +1,9 @@
 import {hasValue} from '@/utils/helper';
 import YiiLang from '@/utils/yii-lang';
 
-import type {TFilemigoUpload} from '@/lib/types';
+import type {TFilemigoContext} from '@/lib/withContext';
 
-type TFilemigoUploadBytesErrorMessage = Pick<TFilemigoUpload, 'maxStorageBytes' | 'maxUploadBytes'> & {
+type TFilemigoUploadBytesErrorMessage = Pick<TFilemigoContext, 'maxStorageBytes' | 'maxUploadBytes'> & {
   fileBytes: number;
   fileMimeType: string;
   maxImageBytes?: number;

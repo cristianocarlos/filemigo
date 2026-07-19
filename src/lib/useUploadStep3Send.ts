@@ -8,18 +8,12 @@ import {useFilemigoContext} from '@/lib/withContext';
 import type {
   TCloudinaryPresignData,
   TCloudinaryUploadApiResponse,
-  TFilemigoUpload,
   TFilemigoUploadPresignResponseContent,
 } from '@/lib/types';
 
-type THandleUploadSendToCloudinaryHook = Pick<TFilemigoUpload, 'confirmPath' | 'deletePath' | 'handleEnd'>;
+export default function useUploadStep3SendToCloudinary() {
+  const {confirmPath, deletePath, handleEnd, xhrActions} = useFilemigoContext();
 
-export default function useUploadStep3SendToCloudinary({
-  confirmPath,
-  deletePath,
-  handleEnd,
-}: THandleUploadSendToCloudinaryHook) {
-  const {xhrActions} = useFilemigoContext();
   const handleStatusError = useUploadStatusError();
   const handleStatusSuccess = useUploadStatusSuccess();
   const progressSetItemRequest = useProgressSetItemRequest();

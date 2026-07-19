@@ -1,15 +1,9 @@
 import useUploadStep1Process from '@/lib/useUploadStep1Process';
 
-import type {TDragEventHandler, TFilemigoUpload, TPickEventHandler} from '@/lib/types';
-import type {ReactElement} from 'react';
+import type {TDragEventHandler, TFilemigoUploadProps, TPickEventHandler} from '@/lib/types';
 
-type TFilemigoUploadProps = TFilemigoUpload & {
-  children?: ReactElement;
-  className?: string;
-};
-
-export default function Upload({children, className = '', ...restProps}: TFilemigoUploadProps) {
-  const multipleSend = useUploadStep1Process(restProps);
+export default function Upload({children, className = ''}: Pick<TFilemigoUploadProps, 'children' | 'className'>) {
+  const multipleSend = useUploadStep1Process();
 
   const handleDragOver: TDragEventHandler = (e) => {
     e.stopPropagation();

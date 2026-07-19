@@ -1,9 +1,9 @@
 import {resolveErrorMessage} from '@/lib/helper';
 import YiiLang from '@/utils/yii-lang';
 
-import type {TFilemigoUpload} from '@/lib/types';
+import type {TFilemigoContext} from '@/lib/withContext';
 
-type TImageDimensionErrorMessage = TFilemigoUpload['imageConstraints'] & {
+type TImageDimensionErrorMessage = TFilemigoContext['imageConstraints'] & {
   naturalHeight: number;
   naturalWidth: number;
 };
@@ -50,7 +50,7 @@ function getUploadImageErrorMessage(params: TImageDimensionErrorMessage) {
 
 export default async function proccessImage(
   uploadFile: File,
-  constraints?: TFilemigoUpload['imageConstraints'],
+  constraints?: TFilemigoContext['imageConstraints'],
 ): Promise<TProccessImageResolve> {
   return new Promise((resolve, reject) => {
     const fileReader = new FileReader();

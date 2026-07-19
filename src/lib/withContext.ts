@@ -1,8 +1,21 @@
 import {createContext, use} from 'react';
 
-import type {TFilemigoXhrActions} from '@/lib/types';
+import type {TFileIndexRows, TFilemigoXhrActions} from '@/lib/types';
 
 export type TFilemigoContext = {
+  confirmPath: string;
+  deletePath: string;
+  handleEnd?: (params: {errorMessage?: string; fileData?: TFileIndexRows[number]}) => void;
+  imageConstraints?: {
+    exactDimensions?: {height: number; width: number};
+    maxBytes?: number;
+    maxDimensions?: {height: number; width: number};
+  };
+  maxStorageBytes: number;
+  maxUploadBytes: number;
+  presignParams: Record<string, string> & {
+    url: string;
+  };
   xhrActions: TFilemigoXhrActions;
 };
 
